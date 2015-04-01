@@ -1,0 +1,30 @@
+{
+  "name": "classname",
+  "version": "0.0.0",
+  "description": "Easy configuration of class names",
+  "main": "classname.js",
+  "scripts": {
+    "test": "karma start spec/karma.conf.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/casperin/classname.git"
+  },
+  "keywords": [
+    "classname"
+  ],
+  "author": "Gorm Casper",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/casperin/classname/issues"
+  },
+  "homepage": "https://github.com/casperin/classname",
+  "devDependencies": {
+    "jasmine-core": "^2.2.0",
+    "karma": "^0.12.31",
+    "karma-cli": "0.0.4",
+    "karma-jasmine": "^0.3.5",
+    "karma-phantomjs-launcher": "^0.1.4",
+    "phantomjs": "^1.9.16"
+  }
+}
