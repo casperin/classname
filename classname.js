@@ -1,54 +1,54 @@
-function classing () {
+function classname () {
     var result = {},
         objects = {},
         resultString = "";
 
     function add (strings) {
-        classing.each(strings.split(" "), function (string) {
+        classname.each(strings.split(" "), function (string) {
             result[string] = !!string;
         });
     }
 
-    classing.each([].slice.call(arguments), function (x) {
-        switch (classing.getType(x)) {
+    classname.each([].slice.call(arguments), function (x) {
+        switch (classname.getType(x)) {
         case "string":
         case "number":
             add(x);
             break;
 
         case "array":
-            add(classing.apply(null, x));
+            add(classname.apply(null, x));
             break;
 
         case "element":
-            add(classing(x.className));
+            add(classname(x.className || ""));
             break;
 
         case "nodelist":
-            add(classing.apply(null, [].slice.call(x)));
+            add(classname.apply(null, [].slice.call(x)));
             break;
 
         case "jquery":
-            add(classing.apply(null, x.get()));
+            add(classname.apply(null, x.get()));
             break;
 
         case "object":
-            objects = classing.extend(objects, x);
+            objects = classname.extend(objects, x);
             break;
         }
     });
 
-    result = classing.extend(result, objects);
+    result = classname.extend(result, objects);
 
-    classing.each(result, function (val, key) {
+    classname.each(result, function (val, key) {
         if (val) resultString += " " + key;
     });
 
     return resultString.substr(1);
 }
 
-classing.setTo = function (elements) {
-    var type = classing.getType(elements);
+classname.setTo = function (elements) {
+    var type = classname.getType(elements);
 
     if (type === "element") {
         elements = [elements];
@@ -63,16 +63,16 @@ classing.setTo = function (elements) {
     }
 
     return function () {
-        var classNames = classing.apply(null, arguments);
+        var classNames = classname.apply(null, arguments);
 
-        classing.each(elements, function (element) {
+        classname.each(elements, function (element) {
             element.className = classNames;
         });
     };
 };
 
-classing.each = function (arr, fn) {
-    var type = classing.getType(arr);
+classname.each = function (arr, fn) {
+    var type = classname.getType(arr);
 
     if (type === "array") {
         for (var i = 0; i < arr.length; i++) {
@@ -87,7 +87,7 @@ classing.each = function (arr, fn) {
     }
 };
 
-classing.getType = function (x) {
+classname.getType = function (x) {
     var type = Object.prototype.toString.call(x).slice(8, -1).toLowerCase();
 
     if (type === "object" && x.jquery) {
@@ -101,12 +101,12 @@ classing.getType = function (x) {
     return type;
 };
 
-classing.extend = function (obj1, obj2) {
+classname.extend = function (obj1, obj2) {
     var result = {},
         objs = [obj1, obj2];
 
-    classing.each(objs, function (obj) {
-        classing.each(obj, function (val, key) {
+    classname.each(objs, function (obj) {
+        classname.each(obj, function (val, key) {
             if (obj.hasOwnProperty(key)) result[key] = val;
         });
     });
@@ -115,5 +115,5 @@ classing.extend = function (obj1, obj2) {
 };
 
 if (typeof module !== "undefined" && module.exports) {
-    module.exports = classing;
+    module.exports = classname;
 }
