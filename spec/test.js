@@ -58,3 +58,16 @@ describe('handle different types of elements', function () {
         expect(classname(nodelist)).toBe('one foo two');
     });
 });
+
+
+describe('Extra functionality: `.setTo()`', function () {
+    it('can set the new className to an element', function () {
+        var el = document.createElement('span');
+
+        el.className = 'one';
+
+        classname.setTo(el)('two');
+
+        expect(el.className).toBe('two');
+    });
+});

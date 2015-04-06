@@ -41,7 +41,9 @@ function classname () {
     result = classname.extend(result, objects);
 
     classname.each(result, function (val, key) {
-        if (val) resultString += " " + key;
+        if (val) {
+            resultString += " " + key;
+        }
     });
 
     return resultString.substr(1);
@@ -107,7 +109,9 @@ classname.extend = function (obj1, obj2) {
 
     classname.each(objs, function (obj) {
         classname.each(obj, function (val, key) {
-            if (obj.hasOwnProperty(key)) result[key] = val;
+            if (obj.hasOwnProperty(key)) {
+                result[key] = val;
+            }
         });
     });
 
